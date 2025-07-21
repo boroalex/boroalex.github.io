@@ -44,6 +44,11 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        
         /* Шапка */
         header {
             background: linear-gradient(135deg, var(--dark), #16213E);
@@ -526,6 +531,149 @@
             letter-spacing: 1px;
         }
         
+        /* Модальное окно */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .modal-overlay.active .modal {
+            transform: scale(1);
+            opacity: 1;
+            animation: modalFadeIn 0.4s ease-out;
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 25px;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .modal-header i {
+            font-size: 50px;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .modal-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .modal-header p {
+            opacity: 0.9;
+        }
+        
+        .modal-body {
+            padding: 25px;
+        }
+        
+        .booking-details {
+            margin-bottom: 25px;
+        }
+        
+        .booking-details h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .booking-details h4::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            height: 80%;
+            width: 4px;
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .booking-details p {
+            margin-bottom: 10px;
+            display: flex;
+        }
+        
+        .booking-details p strong {
+            min-width: 120px;
+            display: inline-block;
+            color: var(--dark);
+        }
+        
+        .booking-details ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+        
+        .booking-details ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .booking-details ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .modal-footer {
+            padding: 0 25px 25px;
+            text-align: center;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+        
         /* Футер */
         footer {
             background: linear-gradient(135deg, var(--dark), #16213E);
@@ -713,6 +861,14 @@
             .extras-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .modal-header i {
+                font-size: 40px;
+            }
+            
+            .modal-header h3 {
+                font-size: 24px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -738,6 +894,18 @@
             
             .extra-option {
                 padding: 15px;
+            }
+            
+            .modal {
+                width: 95%;
+            }
+            
+            .booking-details p {
+                flex-direction: column;
+            }
+            
+            .booking-details p strong {
+                margin-bottom: 5px;
             }
         }
     </style>
@@ -889,7 +1057,32 @@
             </div>
         </div>
     </footer>
-    
+
+    <!-- Модальное окно подтверждения -->
+    <div class="modal-overlay" id="confirmationModal">
+        <div class="modal">
+            <div class="modal-header">
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+                <i class="fas fa-check-circle"></i>
+                <h3>Бронирование подтверждено!</h3>
+                <p>Наш менеджер свяжется с вами в ближайшее время</p>
+            </div>
+            <div class="modal-body">
+                <div class="booking-details">
+                    <h4>Детали бронирования</h4>
+                    <p><strong>Имя:</strong> <span id="modal-name"></span></p>
+                    <p><strong>Телефон:</strong> <span id="modal-phone"></span></p>
+                    <p><strong>Дата и время:</strong> <span id="modal-date"></span> в <span id="modal-time"></span></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="modalOkBtn">Понятно</button>
+            </div>
+        </div>
+    </div>
+        
     <script>
         // Мобильное меню
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -1130,7 +1323,7 @@
             {
                 id: 'champagne',
                 icon: 'fa-solid fa-bath',
-                title: 'Ванна с пеной',
+                title: 'Ванная с пеной',
                 desc: 'Роскошное погружение в облако нежной пены с расслабляющими ароматами',
                 price: '12 000₽'
             },
@@ -1248,6 +1441,26 @@
         const yyyy = today.getFullYear();
         document.getElementById('date').min = `${yyyy}-${mm}-${dd}`;
         
+        // Модальное окно
+        const confirmationModal = document.getElementById('confirmationModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalOkBtn = document.getElementById('modalOkBtn');
+        
+        // Закрытие модального окна
+        function closeModal() {
+            confirmationModal.classList.remove('active');
+        }
+        
+        modalClose.addEventListener('click', closeModal);
+        modalOkBtn.addEventListener('click', closeModal);
+        
+        // Закрытие при клике на оверлей
+        confirmationModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
         // Обработка отправки формы
         document.getElementById('vipMassageForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1278,6 +1491,12 @@
             formData.drinks = selectedDrinks.join(', ');
             formData.specials = selectedSpecials.join(', ');
             
+            // Заполняем модальное окно данными
+            document.getElementById('modal-name').textContent = formData.name;
+            document.getElementById('modal-phone').textContent = formData.phone;
+            document.getElementById('modal-date').textContent = formData.date;
+            document.getElementById('modal-time').textContent = formData.time;
+            
             // Здесь можно добавить AJAX-запрос для отправки данных на сервер
             console.log('VIP форма отправлена:', formData);
             
@@ -1305,9 +1524,11 @@
             let message = `Благодарим вас, ${formData.name}!\n\n`;
             message += `Ваш сеанс подтверждён!`;
             
-            // Показываем уведомление
-            alert(message);
-            
+            // Показываем модальное окно
+            confirmationModal.classList.add('active');
+
+
+
             // Сбрасываем форму
             //this.reset();
             //document.querySelectorAll('.service-option, .extra-option').forEach(el => {

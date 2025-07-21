@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Touch – VIP массаж на дому</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8B5FBF;
+            --primary-dark: #6A3D9C;
+            --secondary: #FFA07A;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --gold: #D4AF37;
+            --gray: #6C757D;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #FAFAFA;
+            color: var(--dark);
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, var(--dark), #16213E);
+            color: white;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        
+        .logo i {
+            margin-right: 12px;
+            color: var(--gold);
+        }
+        
+        .logo span {
+            color: var(--gold);
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Герой */
+        .hero {
+            background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(26, 26, 46, 0.85)), 
+                        url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero-content {
+            color: white;
+            max-width: 700px;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 52px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .hero h1 span {
+            color: var(--gold);
+            font-style: italic;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 35px;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+        
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 16px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(139, 95, 191, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139, 95, 191, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            margin-left: 20px;
+            box-shadow: none;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Основной контент */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            color: var(--dark);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 17px;
+        }
+        
+        /* Форма бронирования */
+        .booking-form {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            padding: 50px;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 16px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(139, 95, 191, 0.2);
+            background-color: white;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* Выбор услуг */
+        .service-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .service-option {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px 20px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-align: center;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .service-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+        
+        .service-option:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(139, 95, 191, 0.03);
+            box-shadow: 0 5px 15px rgba(139, 95, 191, 0.1);
+        }
+        
+        .service-option.selected::before {
+            transform: scaleX(1);
+        }
+        
+        .service-option.selected::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .service-option i {
+            font-size: 32px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .service-option h4 {
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--dark);
+        }
+        
+        .service-option p {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        .service-option .price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 18px;
+        }
+        
+        /* Дополнительные услуги */
+        .extras-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin: 40px 0 20px;
+            color: var(--dark);
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .extras-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            height: 80%;
+            width: 4px;
+            background: linear-gradient(var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .extra-option {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            background-color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .extra-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .extra-option:hover {
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transform: translateY(-3px);
+        }
+        
+        .extra-option:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .extra-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(139, 95, 191, 0.03);
+            box-shadow: 0 5px 15px rgba(139, 95, 191, 0.1);
+        }
+        
+        .extra-option.selected::before {
+            transform: scaleX(1);
+        }
+        
+        .extra-option.selected::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .extra-option i {
+            font-size: 24px;
+            color: var(--primary);
+            margin-right: 15px;
+            min-width: 30px;
+        }
+        
+        .extra-details {
+            flex: 1;
+        }
+        
+        .extra-details h5 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .extra-details p {
+            font-size: 14px;
+            color: var(--gray);
+        }
+        
+        .extra-price {
+            font-weight: 600;
+            color: var(--primary);
+            margin-left: 15px;
+            white-space: nowrap;
+        }
+        
+        textarea.form-control {
+            min-height: 140px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 18px;
+            margin-top: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        /* Футер */
+        footer {
+            background: linear-gradient(135deg, var(--dark), #16213E);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 25px;
+            font-size: 22px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #bbb;
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+        
+        .footer-section a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+        
+        .contact-info i {
+            margin-right: 12px;
+            color: var(--gold);
+            width: 20px;
+            text-align: center;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-icons a {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 25px;
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        /* Адаптация */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 44px;
+            }
+            
+            .service-options {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .extras-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: linear-gradient(135deg, var(--dark), #16213E);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transform: translateY(-100%);
+                transition: transform 0.5s ease;
+                z-index: 1000;
+            }
+            
+            nav.active {
+                transform: translateY(0);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .hero {
+                padding-top: 80px;
+                height: auto;
+                min-height: auto;
+                padding-bottom: 80px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .booking-form {
+                padding: 30px;
+            }
+            
+            .section {
+                padding: 70px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .service-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .extras-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 22px;
+            }
+            
+            .hero h1 {
+                font-size: 30px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .booking-form {
+                padding: 25px 20px;
+            }
+            
+            .service-option {
+                padding: 20px 15px;
+            }
+            
+            .extra-option {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <span>Royal</span> Touch
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#booking">Запись</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>VIP <span>массаж</span> с вниманием к деталям</h1>
+            <p>VIP сервис премиум-класса с индивидуальным подходом. Мы хотим, чтобы клиенты получали максимальное удовольствие от нашего сервиса.</p>
+            <div class="hero-buttons">
+                <a href="#booking" class="btn">Забронировать сеанс</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section" id="booking">
+        <div class="container">
+            <div class="section-title">
+                <h2>Забронировать VIP сеанс</h2>
+                <p>Заполните форму, и наш менеджер свяжется с вами для подтверждения деталей вашего персонального сеанса</p>
+            </div>
+            
+            <form class="booking-form" id="vipMassageForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Ваше имя *</label>
+                        <input type="text" id="name" class="form-control" required placeholder="Как к вам обращаться?">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Контактный телефон *</label>
+                        <input type="tel" id="phone" class="form-control" required placeholder="+7 (___) ___-__-__">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="date">Дата сеанса *</label>
+                        <input type="date" id="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Время сеанса *</label>
+                        <select id="time" class="form-control" required>
+                            <option value="">Выберите время</option>
+                            <option value="10:00">10:00 - 12:00</option>
+                            <option value="12:00">12:00 - 14:00</option>
+                            <option value="14:00">14:00 - 16:00</option>
+                            <option value="16:00">16:00 - 18:00</option>
+                            <option value="18:00">18:00 - 20:00</option>
+                            <option value="20:00">20:00 - 22:00</option>
+                        </select>
+                        <div>* Пожалуйста, сообщите за 30 минут до прибытия</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Выберите массажи (можно несколько) *</label>
+                    <div class="service-options" id="massageFormOptions">
+                        <!-- Опции будут заполнены через JS -->
+                    </div>
+                    <input type="hidden" id="selected-services" required>
+                </div>
+                
+                <h3 class="extras-title">Гастрономическое сопровождение</h3>
+                
+                <div class="form-group">
+                    <div class="extras-grid" id="foodOptions">
+                        <!-- Опции будут заполнены через JS -->
+                    </div>
+                </div>
+                
+                <h3 class="extras-title">Напитки</h3>
+                
+                <div class="form-group">
+                    <div class="extras-grid" id="drinkOptions">
+                        <!-- Опции будут заполнены через JS -->
+                    </div>
+                </div>
+                
+                <h3 class="extras-title">Специально для Вас</h3>
+
+                <div class="form-group">
+                    <div class="extras-grid" id="specialsOptions">
+                        <!-- Опции будут заполнены через JS -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="notes">Особые пожелания</label>
+                    <textarea id="notes" class="form-control" placeholder="Музыка, ароматы, особенности массажа и т.д."></textarea>
+                </div>
+                
+                <button type="submit" class="btn submit-btn">
+                    <i class="fas fa-gem"></i> Забронировать VIP сеанс
+                </button>
+            </form>
+        </div>
+    </section>
+    
+    <footer id="contacts">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Royal Touch</h3>
+                    <p>VIP сервис массажа на дому для самых взыскательных клиентов. Индивидуальный подход и безупречное качество.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Москва, Рублевское шоссе</p>
+                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> vip@royaltouch.ru</p>
+                    <p><i class="fas fa-clock"></i> 24/7 по предварительной записи</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Для клиентов</h3>
+                    <a href="#">Подарочные сертификаты</a>
+                    <a href="#">Корпоративные услуги</a>
+                    <a href="#">Частые вопросы</a>
+                    <a href="#">Политика конфиденциальности</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Royal Touch VIP Massage. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Мобильное меню
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            this.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    mainNav.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+        
+        // Данные для услуг
+        const massageServices = [
+            { 
+                id: 'detox',
+                icon: 'fa-solid fa-spa', 
+                title: 'Шейно-воротниковая зона', 
+                desc: 'Профессиональная техника для снятия напряжения и восстановления легкости движений', 
+                price: '18 000₽/120 мин',
+                value: 'Шейно-воротниковая зона'
+            },
+            { 
+                id: 'imperial',
+                icon: 'fa-solid fa-spa', 
+                title: 'Массаж спины', 
+                desc: 'Глубокое расслабление мышц и снятие напряжения с проработкой каждой зоны', 
+                price: '25 000₽/180 мин',
+                value: 'Массаж спины'
+            },
+            { 
+                id: 'imperial',
+                icon: 'fa-solid fa-spa', 
+                title: 'Массаж ног', 
+                desc: 'Восстанавливающий уход для легкости и комфорта после долгого дня', 
+                price: '25 000₽/180 мин',
+                value: 'Массаж ног'
+            },
+            { 
+                id: 'imperial',
+                icon: 'fa-solid fa-spa', 
+                title: 'Массаж стоп', 
+                desc: 'Точечное воздействие для релаксации и улучшения общего самочувствия', 
+                price: '25 000₽/180 мин',
+                value: 'Массаж стоп'
+            },
+            { 
+                id: 'imperial',
+                icon: 'fa-solid fa-spa', 
+                title: 'Массаж рук и кистей', 
+                desc: 'Нежная проработка для снятия усталости и возвращения легкости каждому движению', 
+                price: '25 000₽/180 мин',
+                value: 'Массаж рук и кистей'
+            },
+            { 
+                id: 'imperial',
+                icon: 'fa-solid fa-spa', 
+                title: 'Массаж ягодиц', 
+                desc: 'Тонизирующий и моделирующий уход для упругости и комфорта', 
+                price: '25 000₽/180 мин',
+                value: 'Массаж ягодиц'
+            },
+            { 
+                id: 'imperial',
+                icon: 'fas fa-spa', 
+                title: 'Массаж живота и грудной клетки', 
+                desc: 'Расслабляющая техника для улучшения дыхания и гармонизации внутреннего состояния', 
+                price: '25 000₽/180 мин',
+                value: 'Массаж живота и грудной клетки'
+            },
+            { 
+                id: 'royal-relax',
+                icon: 'fas fa-crown', 
+                title: 'Королевский релакс', 
+                desc: 'Комплексный расслабляющий массаж всего тела с ароматерапией', 
+                price: '12 000₽/90 мин',
+                value: 'Королевский релакс'
+            },
+        ];
+        
+        const foodOptions = [
+            {
+                id: 'salmon-caviar',
+                icon: 'fa-solid fa-bowl-food',
+                title: 'Паста карбонара',
+                desc: 'Итальянская классика с нежным сливочным соусом, пармезаном и хрустящим панчеттой',
+                price: '5 000₽'
+            },
+            {
+                id: 'salmon-caviar',
+                icon: 'fas fa-shrimp',
+                title: 'Салат с креветками',
+                desc: 'Фирменный салат от шефа с креветками, орехами и моцареллой',
+                price: '5 000₽'
+            },
+            {
+                id: 'salmon-caviar',
+                icon: 'fa-solid fa-seedling',
+                title: 'Цезарь с креветками',
+                desc: 'Классический цезарь с тигровыми креветками, пармезаном и хрустящими крутонами',
+                price: '5 000₽'
+            },
+            {
+                id: 'salmon-caviar',
+                icon: 'fa-solid fa-seedling',
+                title: 'Салат с баклажаном',
+                desc: 'Ароматные запеченные баклажаны с румяными овощами и фирменной заправкой',
+                price: '5 000₽'
+            },
+            {
+                id: 'fruit-plate',
+                icon: 'fas fa-apple-alt',
+                title: 'Фруктовая тарелка премиум',
+                desc: 'Сезонные фрукты и ягоды от элитного поставщика',
+                price: '2 500₽'
+            },
+            {
+                id: 'cheese-plate',
+                icon: 'fas fa-cheese',
+                title: 'Сырное плато',
+                desc: 'Отборные сыры с орехами и медом',
+                price: '3 500₽'
+            },
+            {
+                id: 'cheese-plate',
+                icon: 'fa-solid fa-ice-cream',
+                title: 'Сладости от шэфа',
+                desc: 'Авторские десерты с изысканными сочетаниями и деликатной подачей',
+                price: '3 500₽'
+            },
+            {
+                id: 'salmon-caviar',
+                icon: 'fa-solid fa-bell-concierge',
+                title: 'Сделайте выбор за меня',
+                desc: 'Шеф рекомендует: идеальное сочетание вкусов от нашего кулинара',
+                price: '5 000₽'
+            },
+            {
+                id: 'salmon-caviar',
+                icon: 'fa-solid fa-user',
+                title: 'Другое',
+                desc: 'Можете указать свои пожелания в поле для ввода внизу формы',
+                price: '5 000₽'
+            },
+        ];
+        
+        const drinkOptions = [
+            {
+                id: 'champagne',
+                icon: 'fas fa-glass-whiskey',
+                title: 'Виски',
+                desc: 'Коллекция премиальных сортов с глубоким вкусом и благородным послевкусием',
+                price: '12 000₽'
+            },
+            {
+                id: 'champagne',
+                icon: 'fa-solid fa-champagne-glasses',
+                title: 'Шампанское',
+                desc: 'VinИгристое совершенство: элегантные ноты и праздничный характер',
+                price: '12 000₽'
+            },
+            {
+                id: 'champagne',
+                icon: 'fas fa-wine-glass-alt',
+                title: 'Вино',
+                desc: 'Отборные вина от лучших винодельческих домов с идеальной терруарной гармонией',
+                price: '12 000₽'
+            },
+            {
+                id: 'champagne',
+                icon: 'fa-solid fa-martini-glass-citrus',
+                title: 'Мартини',
+                desc: 'Икона стиля: безупречный баланс горьковатых нот и благородной прохлады',
+                price: '12 000₽'
+            },
+            {
+                id: 'champagne',
+                icon: 'fa-solid fa-martini-glass',
+                title: 'Коктейли',
+                desc: 'Авторские миксы с виртуозным сочетанием вкусов и фирменными акцентами',
+                price: '12 000₽'
+            },
+            {
+                id: 'tea-ceremony',
+                icon: 'fas fa-mug-hot',
+                title: 'Чай фруктовый',
+                desc: 'Ароматные композиции из отборных фруктов и трав с солнечными нотами',
+                price: '3 000₽'
+            },
+            {
+                id: 'fresh-juices',
+                icon: 'fa-solid fa-glass-water',
+                title: 'Свежевыжатые соки',
+                desc: 'Витаминная свежесть: только отборные фрукты и ягоды в идеальной пропорции',
+                price: '2 000₽'
+            },
+            {
+                id: 'salmon-caviar',
+                icon: 'fa-solid fa-bell-concierge',
+                title: 'Сделайте выбор за меня',
+                desc: 'Шеф рекомендует: идеальное сочетание вкусов от нашего кулинара',
+                price: '5 000₽'
+            },
+            {
+                id: 'salmon-caviar',
+                icon: 'fa-solid fa-user',
+                title: 'Другое',
+                desc: 'Можете указать свои пожелания в поле для ввода внизу формы',
+                price: '5 000₽'
+            },
+        ];
+        
+        const specialsOptions = [
+            {
+                id: 'champagne',
+                icon: 'fa-solid fa-bath',
+                title: 'Ванная с пеной',
+                desc: 'Роскошное погружение в облако нежной пены с расслабляющими ароматами',
+                price: '12 000₽'
+            },
+            {
+                id: 'champagne',
+                icon: 'fa-solid fa-leaf',
+                title: 'Лепестки роз',
+                desc: 'Романтический декор из свежих лепестков с нежным цветочным ароматом',
+                price: '12 000₽'
+            },
+            {
+                id: 'champagne',
+                icon: 'fa-solid fa-menorah',
+                title: 'Свечи',
+                desc: 'Мягкий свет ароматических свечей для атмосферы уюта и гармонии',
+                price: '12 000₽'
+            },
+        ];
+        
+        // Заполнение опций массажа в форме
+        const massageFormOptionsContainer = document.getElementById('massageFormOptions');
+        
+        massageServices.forEach(service => {
+            const optionElement = document.createElement('div');
+            optionElement.className = 'service-option';
+            optionElement.dataset.id = service.id;
+            optionElement.dataset.value = service.value;
+            optionElement.innerHTML = `
+                <i class="${service.icon}"></i>
+                <h4>${service.title}</h4>
+                <p>${service.desc}</p>
+            `;
+            optionElement.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                updateSelectedServices();
+            });
+            massageFormOptionsContainer.appendChild(optionElement);
+        });
+        
+        // Заполнение опций еды
+        const foodOptionsContainer = document.getElementById('foodOptions');
+        
+        foodOptions.forEach(option => {
+            const optionElement = document.createElement('div');
+            optionElement.className = 'extra-option';
+            optionElement.dataset.id = option.id;
+            optionElement.dataset.value = option.title;
+            optionElement.innerHTML = `
+                <i class="${option.icon}"></i>
+                <div class="extra-details">
+                    <h5>${option.title}</h5>
+                    <p>${option.desc}</p>
+                </div>
+            `;
+            optionElement.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+            foodOptionsContainer.appendChild(optionElement);
+        });
+        
+        // Заполнение опций напитков
+        const drinkOptionsContainer = document.getElementById('drinkOptions');
+        
+        drinkOptions.forEach(option => {
+            const optionElement = document.createElement('div');
+            optionElement.className = 'extra-option';
+            optionElement.dataset.id = option.id;
+            optionElement.dataset.value = option.title;
+            optionElement.innerHTML = `
+                <i class="${option.icon}"></i>
+                <div class="extra-details">
+                    <h5>${option.title}</h5>
+                    <p>${option.desc}</p>
+                </div>
+            `;
+            optionElement.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+            drinkOptionsContainer.appendChild(optionElement);
+        });
+        
+        // Заполнение опций спец предложений
+        const specialsOptionsContainer = document.getElementById('specialsOptions');
+        
+        specialsOptions.forEach(option => {
+            const optionElement = document.createElement('div');
+            optionElement.className = 'extra-option';
+            optionElement.dataset.id = option.id;
+            optionElement.dataset.value = option.title;
+            optionElement.innerHTML = `
+                <i class="${option.icon}"></i>
+                <div class="extra-details">
+                    <h5>${option.title}</h5>
+                    <p>${option.desc}</p>
+                </div>
+            `;
+            optionElement.addEventListener('click', function() {
+                this.classList.toggle('selected');
+            });
+            specialsOptionsContainer.appendChild(optionElement);
+        });
+        
+
+        // Обновление выбранных услуг
+        function updateSelectedServices() {
+            const selectedOptions = document.querySelectorAll('#massageFormOptions .service-option.selected');
+            const selectedServices = Array.from(selectedOptions).map(option => option.dataset.value);
+            document.getElementById('selected-services').value = selectedServices.join(', ');
+        }
+        
+        // Устанавливаем минимальную дату (сегодня)
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const yyyy = today.getFullYear();
+        document.getElementById('date').min = `${yyyy}-${mm}-${dd}`;
+        
+        // Обработка отправки формы
+        document.getElementById('vipMassageForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Собираем данные формы
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                address: "",
+                services: document.getElementById('selected-services').value,
+                notes: document.getElementById('notes').value,
+                // Здесь можно добавить сбор выбранных допов
+            };
+            
+            // Собираем выбранные допы
+            const selectedFood = Array.from(document.querySelectorAll('#foodOptions .extra-option.selected'))
+                .map(item => item.dataset.value);
+            
+            const selectedDrinks = Array.from(document.querySelectorAll('#drinkOptions .extra-option.selected'))
+                .map(item => item.dataset.value);
+            
+            const selectedSpecials = Array.from(document.querySelectorAll('#specialsOptions .extra-option.selected'))
+                .map(item => item.dataset.value);
+
+            formData.food = selectedFood.join(', ');
+            formData.drinks = selectedDrinks.join(', ');
+            formData.specials = selectedSpecials.join(', ');
+            
+            // Здесь можно добавить AJAX-запрос для отправки данных на сервер
+            console.log('VIP форма отправлена:', formData);
+            
+            // Send to telegram
+            let params = new URLSearchParams(document.location.search);
+            const token = params.get("t");
+            const chatId = params.get("c");
+
+            const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(JSON.stringify(formData))}`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+
+            // Формируем сообщение для пользователя
+            let message = `Благодарим вас, ${formData.name}!\n\n`;
+            message += `Ваш сеанс подтверждён!`;
+            
+            // Показываем уведомление
+            alert(message);
+            
+            // Сбрасываем форму
+            //this.reset();
+            //document.querySelectorAll('.service-option, .extra-option').forEach(el => {
+            //    el.classList.remove('selected');
+            //});
+        });
+        
+        // Плавная прокрутка для якорных ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Анимация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.service-option, .extra-option, .form-group');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100 + index * 50);
+            });
+        });
+    </script>
+</body>
+</html>
